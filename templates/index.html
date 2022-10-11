@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>Reconocimiento de Genero</title>
+  </head>
+  <body>
+
+    <!--
+    <form action="#">
+        <input type="range" id="temperatura" min="0" max="100">
+        <span id="temp"></span>
+    </form>
+    -->
+    <header>
+      <div class="head">
+        <p class="tesjo">Tecnológico de Estudios Superiores de Jocotitlán</p>
+        <h1>Reconocimiento de Genero</h1>
+      </div>
+    </header>
+    <section class="content-main">
+      <div class="tarjetas"  id="camara">
+        <div class="video">
+          <h1 style="margin-bottom:10px;">Reconocimiento</h1>
+        <img src="{{url_for('video_feed')}}" alt="video" style="border-radius: 10px; width: 100%;">
+      </div>
+    </div>
+    <div class="tarjetas" id="controles" >
+      <form  id="form" method="GET">   
+      <div class="controls" style="padding-top: 2%;">
+        <p class="title-controls">Controles</p>
+        <div class="card">
+          <label for="No. Dispositivo">Dispositivo</label>
+          <input type="number" onchange="myfunction()" name="DS" min="0" max="10" id="DS" value="0" required style="border-radius: 2px; border: 0px;">
+        </div>
+        <div class="card" style="display: None;">
+          <label for="No. rostros">Rostros a reconocer</label>
+          <input type="number" min="0" max="10" name="NR" id="NR" required>
+        </div>
+        <div class="card">
+            <label>Color de detección Hombres</label>
+            <select id="CH" onchange="myfunction();" style="border-radius: 2px; border: 0px;">
+              <option value="0">Azul</option>
+              <option value="1">Rojo</option>
+              <option value="2">Verde</option>
+              <option value="3">Morado</option>
+              <option value="4">Rosa</option>
+              <option value="5">Amarillo</option>
+            </select>
+        </div>
+        <div class="card">
+          <label>Color de detección Mujeres</label>
+          <select id="CM"  onchange="myfunction();">
+            <option value="0">Azul</option>
+            <option value="1">Rojo</option>
+            <option value="2">Verde</option>
+            <option value="3">Morado</option>
+            <option value="4">Rosa</option>
+            <option value="5">Amarillo</option>
+          </select>
+      </div>
+        <div class="card">
+          <label for="exp">Exposición</label>
+          <input type="range" id="exp" min="0" max="100" name="ex" onchange="myfunction();">
+          <span id="exp-value" value="50">0</span>
+        </div>
+        <div class="card" style="display: none;">
+          <label for="saturation">Saturación</label>
+          <input type="range" id="saturation" min="0" max="100"  name="sv" onchange="myfunction();">
+          <span id="saturation-value">0</span>
+        </div>
+        <div class="card">
+          <label for="brightness">Brillo</label>
+          <input type="range" id="brightness" min="-255" max="255" name="br" value="0" onchange="myfunction();">
+          <span id="brightness-value">0</span>
+        </div>
+        <div class="card">
+          <label for="contrast">Contraste</label>
+          <input type="range" id="contrast" min="-127" max="127" name="cont" value="0" onchange="myfunction();">
+          <span id="contrast-value">0</span>
+        </div>
+        <div class="card red" style="display: none;">
+          <label for="red">Color</label>
+          <input type="range" id="red" min="0" max="4" name="r" value="0" onchange="myfunction();">
+          <span id="red-value">0</span>
+        </div>
+        <div class="card green" style="display: None;">
+          <label for="green">G</label>
+          <input type="range" id="green" min="0" max="255" name="g" onchange="myfunction();">
+          <span id="green-value">0</span>
+        </div>
+        <div class="card">
+          <label for="blue">Zoom</label>
+          <input type="range" id="blue" min="0" max="100" name="b" value="0" onchange="myfunction();">
+          <span id="blue-value">0%</span>
+        </div>
+      </div>
+      </div>
+    </section>
+  </form>
+    <script>
+      document.getElementById('exp-value').innerHTML=document.getElementById('exp').value;
+       document.getElementById('saturation-value').innerHTML=document.getElementById('saturation').value;
+        document.getElementById('brightness-value').innerHTML=document.getElementById('brightness').value;
+        document.getElementById('contrast-value').innerHTML=document.getElementById('contrast').value;
+        document.getElementById('red-value').innerHTML=document.getElementById('red').value;
+        document.getElementById('green-value').innerHTML=document.getElementById('green').value;
+        document.getElementById('blue-value').innerHTML=document.getElementById('blue').value;
+    </script>
+    <footer>
+      
+    </footer>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script>
+      addEventListener('load',inicio,false);
+
+function inicio()
+{
+  document.getElementById('exp').addEventListener('mousemove',exposicion,false);
+  document.getElementById('saturation').addEventListener('mousemove',Saturacion,false);
+  document.getElementById('brightness').addEventListener('mousemove',brillo,false);
+  document.getElementById('contrast').addEventListener('mousemove',contraste,false);
+  document.getElementById('red').addEventListener('mousemove',rojo,false);
+  document.getElementById('blue').addEventListener('mousemove',azul,false);
+  document.getElementById('green').addEventListener('mousemove',verde,false);
+  
+  document.getElementById('exp').addEventListener('click',exposicionC,false);
+  document.getElementById('saturation').addEventListener('click',SaturacionC,false);
+  document.getElementById('brightness').addEventListener('click',brilloC,false);
+  document.getElementById('contrast').addEventListener('click',contrasteC,false);
+  document.getElementById('red').addEventListener('click',rojoC,false);
+  document.getElementById('blue').addEventListener('click',azulC,false);
+  document.getElementById('green').addEventListener('click',verdeC,false); 
+  myfunction()
+
+  if (getParameterByName('ex')!=''){
+  document.getElementById('exp-value').innerHTML=getParameterByName('ex')
+  var expv = document.forms['form']['ex'];
+  exp.setAttribute('value',getParameterByName('ex'));
+  var satv = document.forms['form']['sv'];
+  document.getElementById('saturation-value').innerHTML=getParameterByName('sv')
+  satv.setAttribute('value',getParameterByName('sv'));
+  document.getElementById('contrast-value').innerHTML=getParameterByName('cont')
+  var brv = document.forms['form']['cont'];
+  brv.setAttribute('value',getParameterByName('cont'));
+  document.getElementById('brightness-value').innerHTML=getParameterByName('br')
+  var brv = document.forms['form']['br'];
+  brv.setAttribute('value',getParameterByName('br'));
+  document.getElementById('red-value').innerHTML=getParameterByName('r')
+  var rv = document.forms['form']['r'];
+  rv.setAttribute('value',getParameterByName('r'));
+  document.getElementById('green-value').innerHTML=getParameterByName('g')
+  var gv = document.forms['form']['g'];
+  gv.setAttribute('value',getParameterByName('g'));
+  document.getElementById('blue-value').innerHTML=getParameterByName('b')
+  var bv = document.forms['form']['b'];
+  bv.setAttribute('value',getParameterByName('b'));
+
+  document.getElementById('blue-value').innerHTML=getParameterByName('NR')
+  var bv = document.forms['form']['NR'];
+  bv.setAttribute('value',getParameterByName('NR'));
+  document.getElementById('blue-value').innerHTML=getParameterByName('DS')
+  var bv = document.forms['form']['DS'];
+  bv.setAttribute('value',getParameterByName('DS'));  
+  }
+}
+function SaturacionC()
+{
+  document.getElementById('saturation-value').innerHTML=document.getElementById('saturation').value;
+  myfunction();
+}
+function exposicionC(){
+  document.getElementById('exp-value').innerHTML=document.getElementById('exp').value;
+  myfunction();
+} 
+function brilloC(){
+  document.getElementById('brightness-value').innerHTML=document.getElementById('brightness').value; 
+  myfunction();
+}
+function contrasteC(){
+  document.getElementById('contrast-value').innerHTML=document.getElementById('contrast').value;
+  myfunction();
+}
+function rojoC(){
+  document.getElementById('red-value').innerHTML=document.getElementById('red').value;
+  myfunction();
+}
+function verdeC(){
+  document.getElementById('green-value').innerHTML=document.getElementById('green').value;
+  myfunction();
+}
+function azulC(){
+  document.getElementById('blue-value').innerHTML=document.getElementById('blue').value;
+  myfunction();
+}
+
+function Saturacion()
+{
+  document.getElementById('saturation-value').innerHTML=document.getElementById('saturation').value;
+  var valores = document.getElementById('saturation').value + "\n" + document.getElementById('brightness').value + "\n" + document.getElementById('contrast').value + "\n" + document.getElementById('red').value + "\n" + document.getElementById('blue').value + "\n" + document.getElementById('green').value;
+}
+function exposicion(){
+  document.getElementById('exp-value').innerHTML=document.getElementById('exp').value;
+} 
+function brillo(){
+  document.getElementById('brightness-value').innerHTML=document.getElementById('brightness').value; 
+}
+function contraste(){
+  document.getElementById('contrast-value').innerHTML=document.getElementById('contrast').value;
+}
+function rojo(){
+  document.getElementById('red-value').innerHTML=document.getElementById('red').value;
+}
+function verde(){
+  document.getElementById('green-value').innerHTML=document.getElementById('green').value;
+}
+function azul(){
+  document.getElementById('blue-value').innerHTML=document.getElementById('blue').value;
+} 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function myfunction() {
+  const SV = document.getElementById("saturation").value;
+  const DS = document.getElementById("DS").value;
+  const NR = document.getElementById("NR").value;
+  const EX = document.getElementById("exp").value;
+  const BR = document.getElementById("brightness").value;
+  const CONT = document.getElementById("contrast").value;
+  const R = document.getElementById("red").value;
+  const G = document.getElementById("green").value;
+  const B = document.getElementById("blue").value;
+  const CH = document.getElementById("CH").value;
+  const CM = document.getElementById("CM").value;
+
+  const dict_values = {DS,NR,EX,SV,BR,CONT,R,G,B,CH,CM} //Pass the javascript variables to a dictionary.
+  const s = JSON.stringify(dict_values); // Stringify converts a JavaScript object or value to a JSON string
+  console.log(s); // Prints the variables to console window, which are in the JSON format
+  $.ajax({
+    url:"/test",
+    type:"POST",
+    contentType: "application/json",
+    data: JSON.stringify(s)});
+  }
+</script>
+
+  </body>
+</html>

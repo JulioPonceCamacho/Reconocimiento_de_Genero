@@ -1,0 +1,231 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background-image: linear-gradient(to left,#4e578a,#98878F);
+}
+
+
+/*
+/////////////////////////////////////////////////////////////
+                          CABECERA
+/////////////////////////////////////////////////////////////
+*/
+h1, .tesjo{
+  font-size: x-large;
+  text-decoration: none;
+  font-weight: bolder;
+  color: white;
+}
+header{
+  background-color: #132036;
+  padding: 15px 0px;
+}
+.head{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  align-items: center;
+  max-width: 720px;
+  margin: auto;
+}
+header .tesjo{
+  justify-self: end;
+  text-align: end;
+}
+header h1{
+  justify-self: start;
+  padding: 10px;
+  border-left: 1px solid white;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/*
+/////////////////////////////////////////////////////////////
+                          BODY
+/////////////////////////////////////////////////////////////
+*/
+.content-main{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+}
+.content-main .tarjetas {
+  width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 2%;
+  text-align: center;
+  transition: all 0.25s;
+}
+
+@media all and (max-width: 1260px) {
+  .content-main .tarjetas{
+    width: 90%;
+  }
+}
+
+/*
+-------------------------------------------------------------
+                          VIDEO
+-------------------------------------------------------------
+*/
+.video{
+  align-self: center;
+  justify-self: end;
+}
+
+/*
+-------------------------------------------------------------
+                          CONTROLES
+-------------------------------------------------------------
+*/
+.controls{
+  
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-self: center;
+  padding: 10px;
+  gap: 10px;
+}
+.controls .card{
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  gap: 5px 15px;
+  padding: 10px;
+  font-size: large;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.card label{
+  text-align: end;
+}
+input[type='range'] {
+  display: block;
+  max-width: 250px;
+}
+
+input[type='range']{
+  background-color: rgba(255, 255, 255, 0);
+}
+input[type='range']:focus {
+  outline: none;
+}
+
+input[type='range'],
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-top: -9px;
+}
+
+input[type=range]::-moz-range-thumb {
+  background-color: white;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+input[type=range]::-ms-thumb {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  background-color: rgba(255, 255, 255, 0);
+  height: 1px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  outline: none;
+}
+
+input[type=range]::-moz-range-track {
+  background-color: #777;
+  height: 3px;
+}
+
+input[type=range]::-ms-track {
+  background-color: #777;
+  height: 3px;
+}
+
+input[type=range]::-ms-fill-lower {
+  background-color: HotPink
+}
+
+input[type=range]::-ms-fill-upper {
+  background-color: black;
+} 
+.red, .green, .blue{
+    color: white;
+}
+.card.red{
+    background-color: tomato;
+    border-radius: 10px;
+}
+.card.blue{
+    background-color: cornflowerblue;
+    border-radius: 10px;
+}
+.card.green{
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+.title-controls{
+    font-size: large;
+    font-weight: 1000;
+    color: rgba(231, 231, 231, 0.863);
+    margin-top: 15px;
+}
+#camara{
+  width: 60%;
+}
+#controles{
+  width: 30%;
+}
+
+@media(max-width: 1200px){
+  h1, .tesjo{
+      font-size: larger;
+  }
+  .content-main{
+      grid-template-columns: repeat(1, 1fr);
+      justify-items: center;
+  }
+  .controls .card{
+      width: 100%;
+  }
+  .video{
+      justify-self: center;
+  }
+  #camara{
+    width: 80%;
+  }
+  #controles{
+    width: 100%;
+  }
+}
